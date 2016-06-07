@@ -12,6 +12,7 @@ def Yes24_Crawling():
     # //*[@id="category_layout"]/tbody/tr[3]/td[2]/div/a[1]
     # //*[@id="category_layout"]/tbody/tr[5]/td[2]/div/a[1]
     bestsellers = soup.find_all("a" ,class_="goodsImgW")
+    print(len(bestsellers))
     bestsellerLink = []
     for i in bestsellers:
         if i.get("href") is not None :
