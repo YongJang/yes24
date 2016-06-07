@@ -15,8 +15,8 @@ def Yes24_Crawling():
     print(len(bestsellers))
     bestsellerLink = []
     for i in bestsellers:
-        if i.get("href") is not None :
-            bestsellerLink.append(i.get("href"))
+        if i.find_all("a") is not None :
+            bestsellerLink.append(i.find_all.get("href"))
     for i in range(len(bestsellerLink)):
         print(bestsellerLink[i])
 
