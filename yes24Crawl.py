@@ -4,7 +4,20 @@ from bs4 import BeautifulSoup
 
 
 def Yes24_Crawling():
-    html = Request('http://www.yes24.com/24/category/bestseller?CategoryNumber=001&sumgb=06&fetchSize=40&PageNumber=1', headers={'User-Agent':'Mozilla/5.0'})
+    n = 1
+    html = Request('http://www.yes24.com/24/category/bestseller?CategoryNumber=001&sumgb=06&fetchSize=40&PageNumber=' + str(n), headers={'User-Agent':'Mozilla/5.0'})
+    webpage = urlopen(html).read()
+    soup = BeautifulSoup(webpage , from_encoding="utf-8")
+    # //*[@id="category_layout"]/tbody/tr[1]/td[2]/div/a[1]
+    # //*[@id="category_layout"]/tbody/tr[3]/td[2]/div/a[1]
+    # //*[@id="category_layout"]/tbody/tr[5]/td[2]/div/a[1]
+    bestsellers = soup.find_all("a" ,class_="goodsImgW")
+    bestsellerLink = []
+    for i in bestsellers:
+        if i.get("href") is not None :
+            bestsellerLink.append(i.get("href"))
+    for i in range(len(bestsellerLink)):
+        print(bestsellerLink[i])
 
 if __name__ == '__main__' :
     Yes24_Crawling()
