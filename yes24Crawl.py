@@ -20,6 +20,8 @@ def Yes24_Crawling():
         detailpage = urlopen(detailhtml).read()
         detailsoup = BeautifulSoup(detailpage, from_encoding="utf-8")
         price = detailsoup.find("th", scope="row").next_sibling.next_element.next_element
+        price = price.replace(" ","")
+        price = price.replace("\n","")
         print(price)
 
 
