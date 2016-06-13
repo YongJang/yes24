@@ -22,7 +22,9 @@ def Yes24_Crawling():
         price = detailsoup.find("th", scope="row").next_sibling.next_element.next_element
         price = price.replace(" ","")
         price = price.replace("\n","")
-        print(price)
+        print("가격 : " + price)
+        pdSize = detailsoup.find("p", class_="pdSize").next_element
+        print("책 페이지 정보 : " + pdSize)
 
 
 
