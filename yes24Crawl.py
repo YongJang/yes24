@@ -19,7 +19,7 @@ def Yes24_Crawling():
         detailhtml = Request(bestsellerLink[i])
         detailpage = urlopen(detailhtml).read()
         detailsoup = BeautifulSoup(detailpage, from_encoding="utf-8")
-        price = detailsoup.find("th", scope="row").next_element
+        price = detailsoup.find("th", scope="row").next_sibling.next_element
         print(price)
 
 
