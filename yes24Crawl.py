@@ -29,6 +29,7 @@ def Yes24_Crawling():
         pdSize = pdSize.replace("쪽","")
         pdSize = pdSize.replace("g","")
         pdSize = pdSize.replace("mm","")
+        pdSizeList = []
         pdSizeList = pdSize.split("|")
         print("페이지 수 : " + pdSizeList[0])
         print("무게 : " + pdSizeList[1])
