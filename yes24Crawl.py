@@ -63,6 +63,8 @@ def Yes24_Crawling():
             print("페이지 수 : " + bookpage)
             print("무게 : " + bookweight)
             print("부피 : " + str(bookvolume))
+            csv_file = open("yes24.csv","a")
+            cw = csv.writer(csv_file, delimiter=',')
             cw.writerow([bookname, str(price), str(bookpage), str(bookweight), str(bookvolume)])
 
 
