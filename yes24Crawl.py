@@ -46,7 +46,7 @@ def Yes24_Crawling():
 
         csv_file = open("yes24.csv","w")
         cw = csv.writer(csv_file, delimiter=',',quotechar='|')
-        cw.writerow([bookname, bookpage, bookweight, (str)bookvolume])
+        cw.writerow([bookname, bookpage, bookweight, str(bookvolume)])
 
 
 if __name__ == '__main__' :
