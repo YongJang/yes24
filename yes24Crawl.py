@@ -6,7 +6,7 @@ import csv
 
 def Yes24_Crawling():
     csv_file = open("yes24.csv","w")
-    cw = csv.writer(csv_file, delimiter=',',quotechar='|')
+    cw = csv.writer(csv_file, delimiter=',')
     cw.writerow(["Name","Price","PageNum","Weight","Volume"])
     for n in range(1,250):
         html = Request('http://www.yes24.com/24/category/bestseller?CategoryNumber=001&sumgb=06&fetchSize=40&PageNumber=' + str(n), headers={'User-Agent':'Mozilla/5.0'})
@@ -36,40 +36,32 @@ def Yes24_Crawling():
             if "쪽" not in pdSize:
                 continue
 
-            pdSize = pdSize.replace(" ","")
-            pdSize = pdSize.replace("쪽","")
-            pdSize = pdSize.replace("g","")
-            pdSize = pdSize.replace("mm","")
-            pdSizeList = []
             pdSizeList = pdSize.split("|")
-            bookpage = pdSizeList[0]
-            try:
-                bookweight = pdSizeList[1]
-                print("페이지 수 : " + bookpage)
-                print("무게 : " + bookweight)
-                volumeList = []
-                volumeList = pdSizeList[2].split("*")
-                if len(volumeList) < 3:
-                    bookvolume = "NA"
-                else:
-                    bookvolume = (int)(volumeList[0]) * (int)(volumeList[1]) * (int)(volumeList[2])
-            except:
-                if pdSizeList[1] is not None:
-                    if "g" not in pdSizeList[1]:
-                        bookweight = "NA"
-                        volumeList = []
-                        volumeList = pdSizeList[1].split("*")
-                        if len(volumeList) < 3:
-                            bookvolume = "NA"
-                        else:
-                            bookvolume = (int)(volumeList[0]) * (int)(volumeList[1]) * (int)(volumeList[2])
-                else:
-                    bookweight = "NA"
-                    bookvolume = "NA"
-            print("부피 : " + str(bookvolume))
 
-            csv_file = open("yes24.csv","a")
-            cw = csv.writer(csv_file, delimiter=',',quotechar='|')
+            bookpage = "NA"
+            bookweight = "NA"
+            bookvolume = "NA"
+
+            for j in range(len(pdSizeList)):
+                if "쪽" in pdSizeList[j]:
+                    bookpage = pdSizeList[j]
+                    bookpage = bookpage.replace("쪽","")
+                    bokkpage = bookpage.replace(" ","")
+                elif "g" in pdSizeList[j]:
+                    bookweight = pdSizeList[j]
+                    bookweight = bookweight.replace(" ","")
+                    bookweight = bookweight.replace("g","")
+                else :
+                    volumeList = []
+                    volumeList = pdSizeList[j].split("*")
+                    if len(volumeList) != 3 :
+                        continue
+                    else:
+                        bookvolume = (int)(volumeList[0]) * (int)(volumeList[1]) * (int)(volumeList[2])
+
+            print("페이지 수 : " + bookpage)
+            print("무게 : " + bookweight)
+            print("부피 : " + str(bookvolume))
             cw.writerow([bookname, str(price), bookpage, bookweight, str(bookvolume)])
 
 
