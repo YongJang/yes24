@@ -53,8 +53,8 @@ def Yes24_Crawling():
                     bookweight = bookweight.replace("g","")
                 else :
                     volumeList = []
-                    pdSizeList[j] = pdSizeList.replace("mm","")
-                    pdSizeList[j] = pdSizeList.replace(" ","")
+                    pdSizeList[j] = pdSizeList[j].replace("mm","")
+                    pdSizeList[j] = pdSizeList[j].replace(" ","")
                     volumeList = pdSizeList[j].split("*")
                     if len(volumeList) != 3 :
                         continue
