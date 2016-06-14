@@ -64,7 +64,7 @@ def Yes24_Crawling():
             print("페이지 수 : " + bookpage)
             print("무게 : " + bookweight)
             print("부피 : " + str(bookvolume))
-            cw.writerow([bookname, str(price), bookpage, bookweight, str(bookvolume)])
+            cw.writerow([bookname, str(price), str(bookpage), str(bookweight), str(bookvolume)])
 
 
 if __name__ == '__main__' :
