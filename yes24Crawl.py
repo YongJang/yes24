@@ -1,6 +1,7 @@
 from urllib.request import Request, urlopen
 import urllib.parse
 from bs4 import BeautifulSoup
+import csv
 
 
 def Yes24_Crawling():
@@ -33,12 +34,19 @@ def Yes24_Crawling():
         pdSize = pdSize.replace("mm","")
         pdSizeList = []
         pdSizeList = pdSize.split("|")
-        print("페이지 수 : " + pdSizeList[0])
-        print("무게 : " + pdSizeList[1])
+        bookpage = pdSizeList[0]
+        bookweight = pdSizeList[1]
+        print("페이지 수 : " + bookpage)
+        print("무게 : " + bookweight)
         volumeList = []
         volumeList = pdSizeList[2].split("*")
         volume = (int)(volumeList[0]) * (int)(volumeList[1]) * (int)(volumeList[2])
-        print("부피 : " + str(volume))
+        bookvolume = (str)volume
+        print("부피 : " + bookvolume)
+
+        csv_file = open("yes24.csv","w")
+        cw = csv_file, delimiter=',',quotechar='|')
+        cw.writerow([bookname, bookpage, bookweight, bookvolume])
 
 
 if __name__ == '__main__' :
