@@ -33,7 +33,7 @@ def Yes24_Crawling():
             price = price.replace(",","")
             price = price.replace("원","")
             print("가격 : " + price)
-            if pdSize = detailsoup.find("p", class_="pdSize") is not None:
+            if detailsoup.find("p", class_="pdSize") is not None:
                 pdSize = detailsoup.find("p", class_="pdSize").next_element
             else :
                 continue
