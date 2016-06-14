@@ -5,7 +5,7 @@ import csv
 
 
 def Yes24_Crawling():
-    csv_file = open("yes24.csv","a")
+    csv_file = open("yes24.csv","w")
     cw = csv.writer(csv_file, delimiter=',',quotechar='|')
     cw.writerow(["Name","Price","PageNum","Weight","Volume"])
     for n in range(1,250):
@@ -35,7 +35,7 @@ def Yes24_Crawling():
 
             if "쪽" not in pdSize:
                 continue
-                
+
             pdSize = pdSize.replace(" ","")
             pdSize = pdSize.replace("쪽","")
             pdSize = pdSize.replace("g","")
