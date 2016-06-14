@@ -27,7 +27,6 @@ def Yes24_Crawling():
             print("책 제목 : " + bookname)
             price = detailsoup.find("th", scope="row").next_sibling.next_element.next_element
             price = price.replace(" ","")
-            price = price.replace("\n","")
             price = price.replace(",","")
             price = price.replace("원","")
             print("가격 : " + price)
@@ -45,7 +44,10 @@ def Yes24_Crawling():
             print("무게 : " + bookweight)
             volumeList = []
             volumeList = pdSizeList[2].split("*")
-            bookvolume = (int)(volumeList[0]) * (int)(volumeList[1]) * (int)(volumeList[2])
+            try:
+                bookvolume = (int)(volumeList[0]) * (int)(volumeList[1]) * (int)(volumeList[2])
+            except:
+                bookvolume = "NA"
 
             print("부피 : " + str(bookvolume))
             csv_file = open("yes24.csv","a")
