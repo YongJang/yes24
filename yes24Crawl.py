@@ -7,7 +7,7 @@ import csv
 def Yes24_Crawling():
     csv_file = open("yes24.csv","a")
     cw = csv.writer(csv_file, delimiter=',',quotechar='|')
-    cw.writerow(["제목","가격","페이지수","무게","부피"])
+    cw.writerow(["Name","Price","PageNum","Weight","Volume"])
     for n in range(1,250):
         html = Request('http://www.yes24.com/24/category/bestseller?CategoryNumber=001&sumgb=06&fetchSize=40&PageNumber=' + str(n), headers={'User-Agent':'Mozilla/5.0'})
         webpage = urlopen(html).read()
