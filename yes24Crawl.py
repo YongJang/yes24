@@ -41,7 +41,7 @@ def Yes24_Crawling():
         volumeList = []
         volumeList = pdSizeList[2].split("*")
         volume = (int)(volumeList[0]) * (int)(volumeList[1]) * (int)(volumeList[2])
-        bookvolume = (str)volume
+        bookvolume = volume
         print("부피 : " + bookvolume)
 
         csv_file = open("yes24.csv","w")
