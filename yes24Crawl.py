@@ -35,7 +35,7 @@ def Yes24_Crawling():
         print("무게 : " + pdSizeList[1])
         volumeList = []
         volumeList = pdSizeList[2].split("*")
-        volume = volumeList[0] * volumeList[1] * volumeList[2]
+        volume = (int)volumeList[0] * (int)volumeList[1] * (int)volumeList[2]
         print("부피 : " + str(volume))
 
 
