@@ -33,7 +33,7 @@ def Yes24_Crawling():
         pdSizeList = pdSize.split("|")
         print("페이지 수 : " + pdSizeList[0])
         print("무게 : " + pdSizeList[1])
-        print("부피 : " + (int)pdSizeList[2])
+        print("부피 : " + str((int)pdSizeList[2]))
 
 
 if __name__ == '__main__' :
