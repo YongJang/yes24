@@ -49,7 +49,7 @@ def Yes24_Crawling():
             bookvolume = "NA"
 
             for j in range(len(pdSizeList)):
-                if "쪽" in pdSizeList[j]:
+                if "쪽" in pdSizeList[j] && '확인' not in pdSizeList[j]:
                     bookpage = pdSizeList[j]
                     bookpage = bookpage.replace("쪽","")
                     bokkpage = bookpage.replace(" ","")
