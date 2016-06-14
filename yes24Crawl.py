@@ -19,7 +19,7 @@ def Yes24_Crawling():
         detailhtml = Request(bestsellerLink[i])
         detailpage = urlopen(detailhtml).read()
         detailsoup = BeautifulSoup(detailpage, from_encoding="utf-8")
-        bookname = detailsoup.find("span", class_="cname").next_sibling.next_element.next_element
+        bookname = detailsoup.find("span", class_="cname").next_sibling.next_element.next_element.next_element
         print("책 제목 : "+bookname)
         price = detailsoup.find("th", scope="row").next_sibling.next_element.next_element
         price = price.replace(" ","")
