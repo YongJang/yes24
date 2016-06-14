@@ -25,7 +25,14 @@ def Yes24_Crawling():
         print("가격 : " + price)
         pdSize = detailsoup.find("p", class_="pdSize").next_element
         print("책 페이지 정보 : " + pdSize)
-
+        pdSize = pdSize.replace(" ","")
+        pdSize = pdSize.replace("쪽","")
+        pdSize = pdSize.replace("g","")
+        pdSize = pdSize.replace("mm","")
+        pdSizeList = pdSize.split("|")
+        print("페이지 수 : " + pdSizeList[0])
+        print("무게 : " + pdSizeList[1])
+        print("부피 : " + (int)pdSizeList[2])
 
 
 if __name__ == '__main__' :
