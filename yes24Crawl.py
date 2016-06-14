@@ -32,6 +32,10 @@ def Yes24_Crawling():
             print("가격 : " + price)
             pdSize = detailsoup.find("p", class_="pdSize").next_element
             print("책 페이지 정보 : " + pdSize)
+
+            if "쪽" not in pdSize:
+                continue
+                
             pdSize = pdSize.replace(" ","")
             pdSize = pdSize.replace("쪽","")
             pdSize = pdSize.replace("g","")
@@ -39,17 +43,31 @@ def Yes24_Crawling():
             pdSizeList = []
             pdSizeList = pdSize.split("|")
             bookpage = pdSizeList[0]
-            bookweight = pdSizeList[1]
-            print("페이지 수 : " + bookpage)
-            print("무게 : " + bookweight)
-            volumeList = []
-            volumeList = pdSizeList[2].split("*")
             try:
-                bookvolume = (int)(volumeList[0]) * (int)(volumeList[1]) * (int)(volumeList[2])
+                bookweight = pdSizeList[1]
+                print("페이지 수 : " + bookpage)
+                print("무게 : " + bookweight)
+                volumeList = []
+                volumeList = pdSizeList[2].split("*")
+                if len(volumeList) < 3:
+                    bookvolume = "NA"
+                else:
+                    bookvolume = (int)(volumeList[0]) * (int)(volumeList[1]) * (int)(volumeList[2])
             except:
-                bookvolume = "NA"
-
+                if pdSizeList[1] is not None:
+                    if "g" not in pdSizeList[1]:
+                        bookweight = "NA"
+                        volumeList = []
+                        volumeList = pdSizeList[1].split("*")
+                        if len(volumeList) < 3:
+                            bookvolume = "NA"
+                        else:
+                            bookvolume = (int)(volumeList[0]) * (int)(volumeList[1]) * (int)(volumeList[2])
+                else:
+                    bookweight = "NA"
+                    bookvolume = "NA"
             print("부피 : " + str(bookvolume))
+
             csv_file = open("yes24.csv","a")
             cw = csv.writer(csv_file, delimiter=',',quotechar='|')
             cw.writerow([bookname, str(price), bookpage, bookweight, str(bookvolume)])
