@@ -72,6 +72,11 @@ def Yes24_Crawling():
             print("부피 : " + str(bookvolume))
             csv_file = open("yes24.csv","a")
             cw = csv.writer(csv_file, delimiter=',')
+            bookname = bookname.strip()
+            price = str(price).strip()
+            bookpage = str(bookpage).strip()
+            bookweight = str(bookweight).strip()
+            bookvolume = str(bookvolume).strip()
             cw.writerow([bookname, str(price), str(bookpage), str(bookweight), str(bookvolume)])
 
 
