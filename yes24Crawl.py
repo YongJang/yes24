@@ -23,7 +23,11 @@ def Yes24_Crawling():
             detailhtml = Request(bestsellerLink[i])
             detailpage = urlopen(detailhtml).read()
             detailsoup = BeautifulSoup(detailpage, from_encoding="utf-8")
-            bookname = detailsoup.find("span", class_="cname").next_sibling.next_element.next_element.next_element
+
+            if detailsoup.find("span", class_="cname") is not None: # 19세 이상 도서면 건너 뛰기
+                bookname = detailsoup.find("span", class_="cname").next_sibling.next_element.next_element.next_element
+            else :
+                continue
             print("책 제목 : " + bookname)
             price = detailsoup.find("th", scope="row").next_sibling.next_element.next_element.strip()
             price = price.replace(",","")
