@@ -29,6 +29,7 @@ def Yes24_Crawling():
             price = price.replace(" ","")
             price = price.replace(",","")
             price = price.replace("원","")
+            price = price.replace("\n","")
             print("가격 : " + price)
             pdSize = detailsoup.find("p", class_="pdSize").next_element
             print("책 페이지 정보 : " + pdSize)
